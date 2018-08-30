@@ -16,6 +16,7 @@ class BasicAuth
      */
     public function handle($request, Closure $next)
     {
+
         return Auth::onceBasic()?: $next($request);
     }
 }

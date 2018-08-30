@@ -27,11 +27,12 @@ class UsersTableSeeder extends Seeder
         User::create([
             'name' => 'KP Akpabio',
             'email' => 'kpono.akpabio@sbtelecoms.com',
-            'status' => 1,
             'department' => 'PAD',
+            'phone' => '08025499721',
             'role' => 'Admin',
             'password' => bcrypt('almond.2'),
             'remember_token' => str_random(10),
+            'api_token' => str_random(60),
 
         ]);
     }

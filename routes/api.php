@@ -21,4 +21,5 @@ Route::get('users/{id}','UsersController@show');
 Route::post('users','UsersController@store');
 Route::put('users/{user}','UsersController@update');
 Route::delete('users/{user}','UsersController@delete');
+Route::post('login', 'UsersController@login');
 Route::any('errors','UsersController@errors');

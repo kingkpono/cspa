@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Auth\User;
 use App\Http\Resources\User as  UserResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use Validator;
 
 class UsersController extends Controller
@@ -40,12 +42,42 @@ class UsersController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors(),400);
         }
-        $user=User::create($request->all());
+
+
+        $user=User::create([
+            'name' => request('name'),
+            'email' => request('email'),
+            'password' => bcrypt(request('password')),
+            'department' => request('department'),
+            'phone' => request('phone'),
+            'role'       => request('role')
+        ]);
         return response()->json($user,201);
 
     }
 
-    public  function update(Request $request, User $user)
+    /**
+     * login api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function login(){
+
+
+
+        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+            $user = Auth::user();
+            $user->api_token = str_random(60);
+            $user->save();
+            return response()->json(['message' => 'Login successful','token'=>$user->api_token,'data'=>$user], 200);
+        }
+        else{
+            return response()->json(['message'=>'Login failed'], 401);
+        }
+    }
+
+
+public  function update(Request $request, User $user)
     {
         $user->update($request->all());
         return response()->json($user,200);
