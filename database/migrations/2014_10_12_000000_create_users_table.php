@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->enum('department', array('PAD', 'PIT', 'E-Business', 'CCX','HR','BDM','Admin'));
             $table->tinyInteger('status')->default(1);
             $table->string('role');
-            $table->string('api_token');
+            $table->string('api_token')->default(md5('awesome'));
             $table->rememberToken();
             $table->timestamps();
         });
