@@ -52,7 +52,8 @@ class UsersController extends Controller
             'phone' => request('phone'),
             'role'       => request('role')
         ]);
-        return response()->json($user,201);
+        return response()->json(['message' => 'Staff added succesfully','token'=>$user->api_token,'data'=>$user], 200);
+
 
     }
 
@@ -93,7 +94,7 @@ public  function update(Request $request, User $user)
 
     public  function errors()
     {
-        return response()->json(["msg"=>"Error occurred"],501);
+        return response()->json(["message"=>"Error occurred"],501);
 
     }
 }
