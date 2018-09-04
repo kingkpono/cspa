@@ -53,6 +53,13 @@ class BdmPersonController extends Controller
 
 
     }
+     
+    public  function update(Request $request, BdmPerson $bdmPerson)
+    {
+        $bdmPerson>update($request->all());
+        return response()->json($bdmPerson,200);
+
+    }
 
     public  function delete(Request $request, BdmPerson $BdmPerson)
     {

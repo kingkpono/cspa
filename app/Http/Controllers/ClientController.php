@@ -79,6 +79,12 @@ class ClientController extends Controller
         return response()->json(null,204);
 
     }
+    public  function update(Request $request, Client $client)
+    {
+        $client->update($request->all());
+        return response()->json($client,200);
+
+    }
 
     public  function errors()
     {

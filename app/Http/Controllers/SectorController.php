@@ -53,6 +53,14 @@ class SectorController extends Controller
 
     }
 
+    public  function update(Request $request, Sector $sector)
+    {
+        $sector->update($request->all());
+        return response()->json($sector,200);
+
+    }
+
+
     public  function delete(Request $request, Sector $sector)
     {
         $sector->delete();
