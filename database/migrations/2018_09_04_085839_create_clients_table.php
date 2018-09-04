@@ -22,7 +22,7 @@ class CreateClientsTable extends Migration
             $table->string('work_phone');
             $table->string('bdm_person');
             $table->integer('sector_id')->unsigned()->index();;
-            $table->foreign('sector_id')->references('id')->on('sector')->onDelete('cascade');
+            $table->foreign('sector_id')->references('id')->on('sectors')->onDelete('cascade');
             $table->enum('vendor_status', array('Pending', 'Completed'));
             $table->enum('client_type', array('Customer', 'Prospect'));
             $table->string('address');
