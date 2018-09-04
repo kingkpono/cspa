@@ -28,7 +28,6 @@ class CreateClientsTable extends Migration
             $table->string('address');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -41,7 +40,6 @@ class CreateClientsTable extends Migration
         Schema::table('clients', function (Blueprint $table) {
             $table->dropForeign('clients_sector_id_foreign');
         });
-
         Schema::dropIfExists('clients');
     }
 }
