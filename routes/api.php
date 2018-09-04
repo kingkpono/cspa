@@ -38,3 +38,11 @@ Route::post('clients','ClientController@store');
 Route::put('clients/{client}','ClientController@update');
 Route::delete('clients/{client}','ClientController@delete');
 
+
+//bdm_persons
+Route::get('bdmpersons','BdmPersonController@index');
+Route::get('bdmpersons/{id}','BdmPersonController@show');
+Route::post('bdmpersons','BdmPersonController@store');
+Route::put('bdmpersons/{bdmperson}','BdmPersonController@update');
+Route::delete('bdmpersons/{bdmperson}','BdmPersonController@delete');
+

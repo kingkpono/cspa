@@ -37,12 +37,16 @@ class ClientController extends Controller
         $rules=[
             'client_type'=>'required',
             'name'=>'required',
-            'email'=>['email','unique:clients,email'],
-            'sector_id' => 'required',
+            'email'=>['required','unique:clients,email'],
+            'sector_id' => 'required|numeric',
             'vendor_status'=>'required',
             'contact_person' =>'required',
-            'mobile' =>'required',
-            'bdm_person' =>'required'
+            'mobile' =>'required_without:work_phone',
+            'work_phone' =>'required_without:mobile',
+            'bdm_person_id' =>'required|numeric',
+            'address' =>'required',
+            'address' =>'required'
+
         ];
         $validator=Validator::make($request->all(),$rules);
 
@@ -60,7 +64,7 @@ class ClientController extends Controller
             'contact_person' => request('contact_person'),
             'mobile'       => request('mobile'),
             'work_phone'       => request('work_phone'),
-            'bdm_person'       => request('bdm_person'),
+            'bdm_person_id'       => request('bdm_person_id'),
             'address'          => request('address')
 
         ]);
