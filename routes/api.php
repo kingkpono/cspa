@@ -23,3 +23,18 @@ Route::put('users/{user}','UsersController@update');
 Route::delete('users/{user}','UsersController@delete');
 Route::post('login', 'UsersController@login');
 Route::any('errors','UsersController@errors');
+
+//sector
+Route::get('sectors','SectorController@index');
+Route::get('sectors/{id}','SectorController@show');
+Route::post('sectors','SectorController@store');
+Route::put('sectors/{sector}','SectorController@update');
+Route::delete('sectors/{sector}','SectorController@delete');
+
+//client
+Route::get('clients','ClientController@index');
+Route::get('clients/{id}','ClientController@show');
+Route::post('clients','ClientController@store');
+Route::put('clients/{client}','ClientController@update');
+Route::delete('clients/{client}','ClientController@delete');
+

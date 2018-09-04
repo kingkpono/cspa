@@ -11,7 +11,7 @@ use Validator;
 class UsersController extends Controller
 {
 
-
+   
     public  function index()
     {
         return response()->json(User::get(),200);
@@ -52,7 +52,7 @@ class UsersController extends Controller
             'phone' => request('phone'),
             'role'       => request('role')
         ]);
-        return response()->json(['message' => 'Staff added succesfully','token'=>$user->api_token,'data'=>$user], 200);
+        return response()->json(['message' => 'Staff added succesfully','data'=>$user], 200);
 
 
     }
