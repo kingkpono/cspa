@@ -33,6 +33,7 @@ Route::delete('sectors/{sector}','SectorController@delete');
 
 //client
 Route::get('clients','ClientController@index');
+Route::get('clients/bdm/{id}','ClientController@getClientsByBdmId');
 Route::get('clients/{id}','ClientController@show');
 Route::post('clients','ClientController@store');
 Route::put('clients/{client}','ClientController@update');
@@ -49,5 +50,4 @@ Route::delete('bdmpersons/{bdmperson}','BdmPersonController@delete');
 //prospects
 Route::get('prospects','ClientController@prospects');
 Route::get('prospects/{id}','ClientController@showProspect');
-
 
