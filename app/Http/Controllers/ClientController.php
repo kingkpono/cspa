@@ -16,7 +16,7 @@ class ClientController extends Controller
 
     public  function index()
     {
-        return response()->json(Client::get(),200);
+        return response()->json(Client::with('bdmperson')->with('sector')->get(),200);
     }
 
     public  function show($id)
@@ -28,7 +28,7 @@ class ClientController extends Controller
 
         }
 
-        $response=new ClientResource(Client::findOrFail($id),200);
+        $response=new ClientResource(Client::findOrFail($id)->with('bdmperson')->with('sector')->get(),200);
         return response()->json($response,200);
     }
 

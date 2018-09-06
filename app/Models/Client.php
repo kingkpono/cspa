@@ -19,5 +19,16 @@ class Client extends Model
          'address'
     ];
 
+     
+
+    public function sector()
+    {
+        return $this->belongsTo('App\Models\Sector');
+    }
+
+    public function bdmperson()
+    {
+        return $this->belongsTo('App\Models\BdmPerson');
+    }
    
 }
