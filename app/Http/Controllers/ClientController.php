@@ -21,7 +21,12 @@ class ClientController extends Controller
     
     public  function getClientsByBdmId($id)
     {    
-        return response()->json(Client::where('bdm_person_id', $id)->with('bdmperson')->with('sector')->get(),200);
+        return response()->json(Client::where('bdm_person_id', $id)->with('sector')->get(),200);
+    }
+    
+    public  function getClientsBySectorId($id)
+    {    
+        return response()->json(Client::where('sector_id', $id)->with('bdmperson')->get(),200);
     }
     
     public  function prospects()
