@@ -18,6 +18,11 @@ class ClientController extends Controller
     {
         return response()->json(Client::with('bdmperson')->with('sector')->get(),200);
     }
+    
+    public  function prospects()
+    {
+        return response()->json(Client::where('client_type','prospect')->with('bdmperson')->with('sector')->get(),200);
+    }
 
     public  function show($id)
     {
@@ -29,6 +34,19 @@ class ClientController extends Controller
         }
 
         $response=new ClientResource(Client::findOrFail($id)->with('bdmperson')->with('sector')->get(),200);
+        return response()->json($response,200);
+    }
+
+    public  function showProspect($id)
+    {
+        $client=Client::find($id);
+        if(is_null($client))
+        {
+            return response()->json(null,404);
+
+        }
+
+        $response=new ClientResource(Client::findOrFail($id)->where('client_type','prospect')->with('bdmperson')->with('sector')->get(),200);
         return response()->json($response,200);
     }
 
@@ -79,6 +97,7 @@ class ClientController extends Controller
         return response()->json(null,204);
 
     }
+    
     public  function update(Request $request, Client $client)
     {
         $client->update($request->all());
