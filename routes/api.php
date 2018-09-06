@@ -46,9 +46,8 @@ Route::post('bdmpersons','BdmPersonController@store');
 Route::put('bdmpersons/{bdmperson}','BdmPersonController@update');
 Route::delete('bdmpersons/{bdmperson}','BdmPersonController@delete');
 
-//client
+//prospects
 Route::get('prospects','ClientController@prospects');
 Route::get('prospects/{id}','ClientController@showProspect');
-Route::put('prospects/{prospect}','ClientController@update');
-Route::delete('prospects/{prospect}','ClientController@delete');
+
 

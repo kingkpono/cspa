@@ -101,6 +101,7 @@ class ClientController extends Controller
     public  function update(Request $request, Client $client)
     {
         $client->update($request->all());
+        echo $client->toSql();
         return response()->json($client,200);
 
     }
