@@ -32,9 +32,11 @@ Route::put('sectors/{sector}','SectorController@update');
 Route::delete('sectors/{sector}','SectorController@delete');
 
 //client
+
 Route::get('clients','ClientController@index');
 Route::get('clients/bdm/{id}','ClientController@getClientsByBdmId');
 Route::get('clients/sector/{id}','ClientController@getClientsBySectorId');
+Route::get('clients/by-type-and-sector/{type}/{id}','ClientController@getClientsByTypeAndSector');
 Route::get('clients/{id}','ClientController@show');
 Route::post('clients','ClientController@store');
 Route::put('clients/{client}','ClientController@update');

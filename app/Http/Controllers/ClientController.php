@@ -18,6 +18,12 @@ class ClientController extends Controller
     {
         return response()->json(Client::with('bdmperson')->with('sector')->get(),200);
     }
+
+    public  function getClientsByTypeAndSector($clientType,$sector_id)
+    {    
+        return response()->json(Client::where('client_type', $clientType)->where('sector_id',
+         $sector_id)->with('bdmperson')->with('sector')->get(),200);
+    }
     
     public  function getClientsByBdmId($id)
     {    
@@ -111,7 +117,7 @@ class ClientController extends Controller
     public  function update(Request $request, Client $client)
     {
         $client->update($request->all());
-        echo $client->toSql();
+     
         return response()->json($client,200);
 
     }
