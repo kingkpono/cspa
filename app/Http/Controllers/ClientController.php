@@ -24,6 +24,8 @@ class ClientController extends Controller
         return response()->json(Client::where('client_type', $clientType)->where('sector_id',
          $sector_id)->with('bdmperson')->with('sector')->get(),200);
     }
+
+   
     
     public  function getClientsByBdmId($id)
     {    
@@ -35,9 +37,9 @@ class ClientController extends Controller
         return response()->json(Client::where('sector_id', $id)->with('bdmperson')->with('sector')->get(),200);
     }
     
-    public  function prospects()
+    public  function getClientsByType($type)
     {
-        return response()->json(Client::where('client_type','prospect')->with('bdmperson')->with('sector')->get(),200);
+        return response()->json(Client::where('client_type',$type)->with('bdmperson')->with('sector')->get(),200);
     }
 
     public  function show($id)
@@ -53,18 +55,7 @@ class ClientController extends Controller
         return response()->json($response,200);
     }
 
-    public  function showProspect($id)
-    {
-        $client=Client::find($id);
-        if(is_null($client))
-        {
-            return response()->json(null,404);
-
-        }
-
-        $response=new ClientResource(Client::findOrFail($id)->where('client_type','prospect')->with('bdmperson')->with('sector')->get(),200);
-        return response()->json($response,200);
-    }
+    
 
     public  function store(Request $request)
     {
