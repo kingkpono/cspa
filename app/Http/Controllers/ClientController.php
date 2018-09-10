@@ -42,6 +42,8 @@ class ClientController extends Controller
         return response()->json(Client::where('client_type',$type)->with('bdmperson')->with('sector')->get(),200);
     }
 
+    
+
     public  function show($id)
     {
         $client=Client::find($id);

@@ -52,4 +52,12 @@ Route::put('bdmpersons/{bdmperson}','BdmPersonController@update');
 Route::delete('bdmpersons/{bdmperson}','BdmPersonController@delete');
 
 
+//devices
+Route::get('devices','DeviceController@index');
+Route::get('devices/{id}','DeviceController@show');
+Route::post('devices','DeviceController@store');
+Route::put('devices/{Device}','DeviceController@update');
+Route::delete('devices/{Device}','DeviceController@delete');
+
+
 
