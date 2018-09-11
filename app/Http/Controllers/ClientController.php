@@ -95,7 +95,7 @@ class ClientController extends Controller
             'address'          => request('address')
 
         ]);
-        return response()->json(['message' => 'Client added succesfully','data'=>$client], 200);
+        return response()->json(['message' => 'Client added successfully','data'=>$client], 200);
 
 
     }

@@ -67,4 +67,12 @@ Route::put('serviceTypes/{serviceType}','ServiceTypeController@update');
 Route::delete('serviceTypes/{serviceType}','ServiceTypeController@delete');
 
 
+//service types
+Route::get('serviceTypes','ServiceTypeController@index');
+Route::get('serviceTypes/{id}','ServiceTypeController@show');
+Route::post('serviceTypes','ServiceTypeController@store');
+Route::put('serviceTypes/{serviceType}','ServiceTypeController@update');
+Route::delete('serviceTypes/{serviceType}','ServiceTypeController@delete');
+
+
 

@@ -52,7 +52,7 @@ class UsersController extends Controller
             'phone' => request('phone'),
             'role'       => request('role')
         ]);
-        return response()->json(['message' => 'Staff added succesfully','data'=>$user], 200);
+        return response()->json(['message' => 'Staff added successfully','data'=>$user], 200);
 
 
     }

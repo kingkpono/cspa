@@ -50,7 +50,7 @@ class ServiceTypeController extends Controller
             'description' => request('description')          
 
         ]);
-        return response()->json(['message' => 'ServiceType added succesfully','data'=>$serviceType], 200);
+        return response()->json(['message' => 'Service type added successfully','data'=>$serviceType], 200);
 
 
     }

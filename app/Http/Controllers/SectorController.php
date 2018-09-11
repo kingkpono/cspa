@@ -48,7 +48,7 @@ class SectorController extends Controller
             'description' => request('description')          
 
         ]);
-        return response()->json(['message' => 'Sector added succesfully','data'=>$sector], 200);
+        return response()->json(['message' => 'Sector added successfully','data'=>$sector], 200);
 
 
     }

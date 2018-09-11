@@ -49,7 +49,7 @@ class BdmPersonController extends Controller
             
 
         ]);
-        return response()->json(['message' => 'Business Development Person added succesfully','data'=>$BdmPerson], 200);
+        return response()->json(['message' => 'Business Development Person added successfully','data'=>$BdmPerson], 200);
 
 
     }

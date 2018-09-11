@@ -47,7 +47,7 @@ class DeviceController extends Controller
             'name' => request('name')        
 
         ]);
-        return response()->json(['message' => 'Device added succesfully','data'=>$device], 200);
+        return response()->json(['message' => 'Device added successfully','data'=>$device], 200);
 
 
     }
