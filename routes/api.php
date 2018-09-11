@@ -56,8 +56,8 @@ Route::delete('bdmpersons/{bdmperson}','BdmPersonController@delete');
 Route::get('devices','DeviceController@index');
 Route::get('devices/{id}','DeviceController@show');
 Route::post('devices','DeviceController@store');
-Route::put('devices/{Device}','DeviceController@update');
-Route::delete('devices/{Device}','DeviceController@delete');
+Route::put('devices/{device}','DeviceController@update');
+Route::delete('devices/{device}','DeviceController@delete');
 
 
 
