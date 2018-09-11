@@ -33,7 +33,9 @@ class ServiceTypeController extends Controller
     {
         $rules=[
          
-            'name'=>'required',
+            'service_type'=>'required',
+            'description'=>'required'
+
              
         ];
         $validator=Validator::make($request->all(),$rules);
@@ -44,7 +46,7 @@ class ServiceTypeController extends Controller
 
        
         $serviceType=ServiceType::create([
-            'name' => request('name'),
+            'service_type' => request('service_type'),
             'description' => request('description')          
 
         ]);
