@@ -41,6 +41,7 @@ class UsersController extends Controller
 
         if($validator->fails()){
             return $this->error($validator->errors(),400);
+            
         }
 
         try{
@@ -54,7 +55,7 @@ class UsersController extends Controller
         ]);
         return response()->json(['message' => 'Staff added successfully','data'=>$user], 200);
          } catch (\Exception $error) {
-            return response()->json('Error creating client', 501);
+            return response()->json(["message"=>"Error creating client"], 501);
         }
 
     }
@@ -76,6 +77,7 @@ class UsersController extends Controller
         }
         else{
             return response()->json(['message'=>'Login failed'], 401);
+            
         }
     }
 
@@ -94,9 +96,5 @@ public  function update(Request $request, User $user)
 
     }
 
-    public  function errors()
-    {
-        return response()->json(["message"=>"Error occurred"],501);
-
-    }
+   
 }
