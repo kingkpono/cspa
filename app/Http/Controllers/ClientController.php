@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Http\Resources\Client as  ClientResource;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 use Validator;
+
 
 class ClientController extends Controller
 {
@@ -75,12 +77,13 @@ class ClientController extends Controller
             'address' =>'required'
 
         ];
+        try{
         $validator=Validator::make($request->all(),$rules);
 
         if($validator->fails()){
-            return response()->json($validator->errors(),400);
+            return $this->error($validator->errors(),400);
         }
-
+        
        
         $client=Client::create([
             'name' => request('name'),
@@ -96,7 +99,9 @@ class ClientController extends Controller
 
         ]);
         return response()->json(['message' => 'Client added successfully','data'=>$client], 200);
-
+    } catch (\Exception $error) {
+        return response()->json('Error creating client', 501);
+    }
 
     }
 
@@ -115,9 +120,7 @@ class ClientController extends Controller
 
     }
 
-    public  function errors()
-    {
-        return response()->json(["message"=>"Error occurred"],501);
+   
 
-    }
+    
 }

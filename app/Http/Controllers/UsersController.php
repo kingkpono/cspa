@@ -40,10 +40,10 @@ class UsersController extends Controller
         $validator=Validator::make($request->all(),$rules);
 
         if($validator->fails()){
-            return response()->json($validator->errors(),400);
+            return $this->error($validator->errors(),400);
         }
 
-
+        try{
         $user=User::create([
             'name' => request('name'),
             'email' => request('email'),
@@ -53,7 +53,9 @@ class UsersController extends Controller
             'role'       => request('role')
         ]);
         return response()->json(['message' => 'Staff added successfully','data'=>$user], 200);
-
+         } catch (\Exception $error) {
+            return response()->json('Error creating client', 501);
+        }
 
     }
 
