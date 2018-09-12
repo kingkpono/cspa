@@ -50,7 +50,7 @@ class SalesTicketController extends Controller
             $salesTicket=SalesTicket::create([
             'client_id' => request('client_id'),
             'service_type_id' => request('service_type_id'),    
-            'device_id' => request('device_id'),  
+            'device' => request('device'),  
             'serial_number' => request('serial_number'),  
             'device_description' => request('device_description'),   
             'device_warranty' => request('device_warranty'), 

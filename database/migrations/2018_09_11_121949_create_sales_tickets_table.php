@@ -19,8 +19,7 @@ class CreateSalesTicketsTable extends Migration
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->integer('service_type_id')->unsigned()->index();
             $table->foreign('service_type_id')->references('id')->on('service_types')->onDelete('cascade');
-            $table->integer('device_id')->unsigned()->index();
-            $table->foreign('device_id')->references('id')->on('devices')->onDelete('cascade');
+            $table->string('device')->nullable();
             $table->string('serial_number')->nullable();
             $table->string('device_description')->nullable();
             $table->enum('device_warranty', array('6 months', '1 year','2 year'))->nullable();

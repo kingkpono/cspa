@@ -9,7 +9,11 @@ class SalesTicket extends Model
 {
 
     use Notifiable;
-   
+
+    protected $fillable = [
+       'client_id', 'service_type_id' ,'device','serial_number', 
+        'device_description', 'device_warranty','project_details', 'start_date','end_date',
+            'status','project_officers', 'attachment'];
 
     
     public function client()
@@ -22,9 +26,6 @@ class SalesTicket extends Model
         return $this->belongsTo('App\Models\ServiceType', 'service_type_id');
     }
 
-    public function device()
-    {
-        return $this->belongsTo('App\Models\Device', 'device_id');
-    }
+   
    
 }

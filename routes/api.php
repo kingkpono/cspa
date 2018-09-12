@@ -67,12 +67,13 @@ Route::put('serviceTypes/{serviceType}','ServiceTypeController@update');
 Route::delete('serviceTypes/{serviceType}','ServiceTypeController@delete');
 
 
-//service types
-Route::get('serviceTypes','ServiceTypeController@index');
-Route::get('serviceTypes/{id}','ServiceTypeController@show');
-Route::post('serviceTypes','ServiceTypeController@store');
-Route::put('serviceTypes/{serviceType}','ServiceTypeController@update');
-Route::delete('serviceTypes/{serviceType}','ServiceTypeController@delete');
+//sales tickets
+Route::get('salesTickets','SalesTicketController@index');
+Route::get('salesTickets/{id}','SalesTicketController@show');
+Route::post('salesTickets','SalesTicketController@store');
+Route::put('salesTickets/{SalesTicket}','SalesTicketController@update');
+Route::delete('salesTickets/{SalesTicket}','SalesTicketController@delete');
+
 
 
 
