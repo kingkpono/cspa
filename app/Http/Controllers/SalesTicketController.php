@@ -38,7 +38,9 @@ class SalesTicketController extends Controller
             'project_details'=>'required',
             'start_date'=>'required',
             'end_date'=>'required',
-            'project_officers'=>'required'
+            'project_officers'=>'required',
+            'ticket_contact_email'=>['required_without:ticket_contact_phone','email'],
+            'ticket_contact_phone'=>'required_without:ticket_contact_email'
         ];
         $validator=Validator::make($request->all(),$rules);
 
@@ -55,14 +57,16 @@ class SalesTicketController extends Controller
             'device_description' => request('device_description'),   
             'device_warranty' => request('device_warranty'), 
             'project_details' => request('project_details'), 
+            'ticket_contact_email'=>request('ticket_contact_email'), 
+            'ticket_contact_phone'=>request('ticket_contact_phone'), 
             'start_date' => request('start_date'), 
             'end_date' => request('end_date'), 
-            'status' => request('status'), 
+            'status' => 'Pending', 
             'project_officers' => request('project_officers'), 
             'attachment' => request('attachment'), 
 
         ]);
-        return response()->json(['message' => 'SalesTicket added successfully','data'=>$salesTicket], 200);
+        return response()->json(['message' => 'Sales Ticket added successfully','data'=>$salesTicket], 200);
 
 
     }
