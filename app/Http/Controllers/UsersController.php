@@ -36,7 +36,7 @@ class UsersController extends Controller
         $officers=$request->officers;
       
         $users = DB::table('users')
-                     ->select('*')
+                     ->select('id,name,email,phone,department,status,role')
                     ->whereRaw('id IN ('.$request->officers.')')
                      ->get();
      
