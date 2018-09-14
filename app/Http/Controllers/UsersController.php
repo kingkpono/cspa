@@ -5,6 +5,7 @@ use App\Models\Auth\User;
 use App\Http\Resources\User as  UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use Validator;
 
@@ -28,6 +29,25 @@ class UsersController extends Controller
 
         $response=new UserResource(User::findOrFail($id),200);
         return response()->json($response,200);
+    }
+
+    public  function getProjectOfficers(Request $request)
+    {
+        $officers=$request->officers;
+      
+        $users = DB::table('users')
+                     ->select('*')
+                    ->whereRaw('id IN ('.$request->officers.')')
+                     ->get();
+     
+        if(is_null($users))
+        {
+            return response()->json(null,404);
+
+        }
+
+       
+        return response()->json($users,200);
     }
 
     public  function store(Request $request)
@@ -55,7 +75,7 @@ class UsersController extends Controller
         ]);
         return response()->json(['message' => 'Staff added successfully','data'=>$user], 200);
          } catch (\Exception $error) {
-            return response()->json(["message"=>"Error creating client"], 501);
+            return response()->json(["message"=>"Error creating user"], 501);
         }
 
     }

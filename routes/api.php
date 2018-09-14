@@ -23,6 +23,8 @@ Route::put('users/{user}','UsersController@update');
 Route::delete('users/{user}','UsersController@delete');
 Route::post('login', 'UsersController@login');
 Route::any('errors','UsersController@errors');
+Route::post('users/officers','UsersController@getProjectOfficers');
+
 
 //sector
 Route::get('sectors','SectorController@index');
