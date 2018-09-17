@@ -31,6 +31,8 @@ class SalesTicketController extends Controller
 
     public  function store(Request $request)
     {
+
+        
         $rules=[
          
             'client_id'=>'required',
@@ -48,6 +50,8 @@ class SalesTicketController extends Controller
             return response()->json($validator->errors(),400);
         }
 
+        
+
        
             $salesTicket=SalesTicket::create([
             'client_id' => request('client_id'),
@@ -63,7 +67,7 @@ class SalesTicketController extends Controller
             'end_date' => request('end_date'), 
             'status' => 'Pending', 
             'project_officers' => request('project_officers'), 
-            'attachment' => request('attachment'), 
+            'attachment' =>  request('attachment')
 
         ]);
         return response()->json(['message' => 'Sales Ticket added successfully','data'=>$salesTicket], 200);

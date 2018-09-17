@@ -76,6 +76,13 @@ Route::post('salesTickets','SalesTicketController@store');
 Route::put('salesTickets/{SalesTicket}','SalesTicketController@update');
 Route::delete('salesTickets/{SalesTicket}','SalesTicketController@delete');
 
+//support tickets
+Route::get('supportTickets','SupportTicketController@index');
+Route::get('supportTickets/{id}','SupportTicketController@show');
+Route::post('supportTickets','SupportTicketController@store');
+Route::put('supportTickets/{SupportTicket}','SupportTicketController@update');
+Route::delete('supportTickets/{SupportTicket}','SupportTicketController@delete');
+
 
 
 
