@@ -89,7 +89,7 @@ class SalesTicketController extends Controller
    
 
         DB::table('sales_tickets')
-                    ->delete($request->id);
+             ->where('id', $request->id)->delete();
                     return response()->json(null,204);
 
     }
