@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SalesTicket;
 use App\Http\Resources\SalesTicket as  SalesTicketResource;
+use Illuminate\Support\Facades\DB;
 
 
 use Validator;
@@ -13,7 +14,7 @@ class SalesTicketController extends Controller
     
     public  function index()
     {
-        return response()->json(SalesTicket::get(),200);
+        return response()->json(SalesTicket::with('client')->with('serviceType')->get(),200);
     }
 
     public  function show($id)
@@ -85,8 +86,11 @@ class SalesTicketController extends Controller
 
     public  function delete(Request $request, SalesTicket $salesTicket)
     {
-        $salesTicket->delete();
-        return response()->json(null,204);
+   
+
+        DB::table('sales_tickets')
+                    ->delete($request->id);
+                    return response()->json(null,204);
 
     }
 

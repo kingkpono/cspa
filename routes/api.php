@@ -81,7 +81,7 @@ Route::get('supportTickets','SupportTicketController@index');
 Route::get('supportTickets/{id}','SupportTicketController@show');
 Route::post('supportTickets','SupportTicketController@store');
 Route::put('supportTickets/{SupportTicket}','SupportTicketController@update');
-Route::delete('supportTickets/{SupportTicket}','SupportTicketController@delete');
+Route::delete('supportTickets/{id}','SupportTicketController@delete');
 
 
 
