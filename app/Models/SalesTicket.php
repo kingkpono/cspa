@@ -12,7 +12,7 @@ class SalesTicket extends Model
 
     protected $fillable = [
        'client_id', 'service_type_id' ,'device','serial_number', 
-        'device_description', 'device_warranty','project_details', 'start_date','end_date',
+        'device_description', 'ticket_contact_email', 'ticket_contact_phone','device_warranty','project_details', 'start_date','end_date',
             'status','project_officers', 'attachment'];
 
     
