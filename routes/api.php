@@ -74,7 +74,7 @@ Route::get('salesTickets','SalesTicketController@index');
 Route::get('salesTickets/{id}','SalesTicketController@show');
 Route::post('salesTickets','SalesTicketController@store');
 Route::put('salesTickets/{SalesTicket}','SalesTicketController@update');
-Route::delete('salesTickets/{SalesTicket}','SalesTicketController@delete');
+Route::delete('salesTickets/{id}','SalesTicketController@delete');
 
 //support tickets
 Route::get('supportTickets','SupportTicketController@index');

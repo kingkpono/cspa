@@ -13,7 +13,7 @@ class SupportTicketController extends Controller
     
     public  function index()
     {
-        return response()->json(SupportTicket::get(),200);
+        return response()->json(SupportTicket::with('client')->with('serviceType')->get(),200);
     }
 
     public  function show($id)
@@ -25,7 +25,7 @@ class SupportTicketController extends Controller
 
         }
 
-        $response=new SupportTicketResource(SupportTicket::findOrFail($id),200);
+        $response=new SupportTicketResource(SupportTicket::findOrFail($id)->with('client')->with('serviceType')->get(),200);
         return response()->json($response,200);
     }
 
@@ -77,8 +77,10 @@ class SupportTicketController extends Controller
 
     public  function delete(Request $request, SupportTicket $supportTicket)
     {
-        $supportTicket->delete();
-        return response()->json(null,204);
+        DB::table('support_tickets')
+             ->where('id', $request->id)->delete();
+                return response()->json(null,204);
+        
 
     }
 
