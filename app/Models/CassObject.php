@@ -27,7 +27,7 @@ class CassObject extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\Auth\User', 'added_by');
+        return $this->belongsTo('App\Models\Auth\User');
     }
     public function cassType()
     {

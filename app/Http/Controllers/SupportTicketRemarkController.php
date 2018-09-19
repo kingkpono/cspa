@@ -13,7 +13,7 @@ class SupportTicketRemarkController extends Controller
     
     public  function index($supportTicketId)
     {
-        return response()->json(SupportTicketRemark::select('*')->where('support_ticket_id',$supportTicketId)->with('user')->with('support_ticket_id')->get(),200);
+        return response()->json(SupportTicketRemark::select('*')->where('support_ticket_id',$supportTicketId)->with('user')->with('supportTicket')->get(),200);
     }
 
     public  function show($id)

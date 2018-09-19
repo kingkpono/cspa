@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
-class SupportTicketRemark extends Model
+class SalesTicketRemark extends Model
 {
 
     use Notifiable;
 
     protected $fillable = [
        'id', 'user_id',
-        'support_ticket_id', 'remark'];
+        'sales_ticket_id', 'remark'];
 
     
     public function user()
@@ -20,9 +20,9 @@ class SupportTicketRemark extends Model
         return $this->belongsTo('App\Models\Auth\User');
     }
 
-    public function supportTicket()
+    public function salesTicket()
     {
-        return $this->belongsTo('App\Models\SupportTicket', 'support_ticket_id');
+        return $this->belongsTo('App\Models\SalesTicket', 'sales_ticket_id');
     }
 
    

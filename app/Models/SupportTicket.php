@@ -23,7 +23,7 @@ class SupportTicket extends Model
 
     public function serviceType()
     {
-        return $this->belongsTo('App\Models\ServiceType', 'service_type_id');
+        return $this->belongsTo('App\Models\ServiceType');
     }
 
    

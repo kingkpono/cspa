@@ -25,8 +25,8 @@ class CreateCassObjectsTable extends Migration
             $table->string('due_year');
             $table->string('location');
             $table->string('remark')->nullable();
-            $table->integer('added_by')->unsigned()->index();
-            $table->foreign('added_by')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -43,7 +43,7 @@ class CreateCassObjectsTable extends Migration
             $table->dropForeign('service_type_id_foreign');
             $table->dropForeign('cass_type_id_foreign');
             $table->dropForeign('client_id_foreign');
-            $table->dropForeign('added_by_foreign');
+            $table->dropForeign('user_id_foreign');
             
         });
         
