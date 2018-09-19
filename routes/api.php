@@ -91,7 +91,7 @@ Route::put('cass/{cass}','CassObjectController@update');
 Route::delete('cass/{id}','CassObjectController@delete');
 
 //support ticket remarks
-Route::get('supportTicketRemarks/ticket/{id}','supportTicketRemarkController@index');
+Route::get('supportTicketRemarks/ticket/{id}','SupportTicketRemarkController@index');
 Route::post('supportTicketRemarks','SupportTicketRemarkController@store');
 
 
