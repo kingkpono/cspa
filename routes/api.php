@@ -84,11 +84,11 @@ Route::put('supportTickets/{supportTicket}','SupportTicketController@update');
 Route::delete('supportTickets/{id}','SupportTicketController@delete');
 
 //cass
-Route::get('cass','SupportTicketController@index');
-Route::get('cass/{id}','SupportTicketController@show');
-Route::post('cass','SupportTicketController@store');
-Route::put('cass/{cass}','SupportTicketController@update');
-Route::delete('cass/{id}','SupportTicketController@delete');
+Route::get('cass','CassObjectController@index');
+Route::get('cass/{id}','CassObjectController@show');
+Route::post('cass','CassObjectController@store');
+Route::put('cass/{cass}','CassObjectController@update');
+Route::delete('cass/{id}','CassObjectController@delete');
 
 //support ticket remarks
 Route::get('supportTicketRemarks/{id}','SupportTicketController@index');

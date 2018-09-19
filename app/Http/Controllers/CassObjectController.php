@@ -60,7 +60,8 @@ class CassObjectController extends Controller
                 'due_month'=>request('due_month'),
                 'due_year'=>request('due_year'),
                 'location'=>request('location'),
-                'remark'=>request('remark')
+                'remark'=>request('remark'),
+                'added_by'=>request('added_by')
 
         ]);
         return response()->json(['message' => 'Client Cass added successfully','data'=>$cassObject], 200);

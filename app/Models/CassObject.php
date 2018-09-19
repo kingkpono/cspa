@@ -25,11 +25,11 @@ class CassObject extends Model
         return $this->belongsTo('App\Models\ServiceType', 'service_type_id');
     }
 
-    public function User()
+    public function user()
     {
-        return $this->belongsTo('App\Models\User', 'added_by');
+        return $this->belongsTo('App\Models\Auth\User', 'added_by');
     }
-    public function CassType()
+    public function cassType()
     {
         return $this->belongsTo('App\Models\CassType', 'cass_type_id');
     }
