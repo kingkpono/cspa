@@ -45,7 +45,6 @@ class CreateCassObjectsTable extends Migration
             $table->dropForeign('client_id_foreign');
             $table->dropForeign('added_by_foreign');
             
-
         });
         
         Schema::dropIfExists('cass_objects');

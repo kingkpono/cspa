@@ -63,7 +63,7 @@ class CassObjectController extends Controller
                 'remark'=>request('remark')
 
         ]);
-        return response()->json(['message' => 'Sales Ticket added successfully','data'=>$cassObject], 200);
+        return response()->json(['message' => 'Client Cass added successfully','data'=>$cassObject], 200);
 
 
     }

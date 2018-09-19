@@ -73,15 +73,28 @@ Route::delete('serviceTypes/{serviceType}','ServiceTypeController@delete');
 Route::get('salesTickets','SalesTicketController@index');
 Route::get('salesTickets/{id}','SalesTicketController@show');
 Route::post('salesTickets','SalesTicketController@store');
-Route::put('salesTickets/{SalesTicket}','SalesTicketController@update');
+Route::put('salesTickets/{salesTicket}','SalesTicketController@update');
 Route::delete('salesTickets/{id}','SalesTicketController@delete');
 
 //support tickets
 Route::get('supportTickets','SupportTicketController@index');
 Route::get('supportTickets/{id}','SupportTicketController@show');
 Route::post('supportTickets','SupportTicketController@store');
-Route::put('supportTickets/{SupportTicket}','SupportTicketController@update');
+Route::put('supportTickets/{supportTicket}','SupportTicketController@update');
 Route::delete('supportTickets/{id}','SupportTicketController@delete');
+
+//cass
+Route::get('cass','SupportTicketController@index');
+Route::get('cass/{id}','SupportTicketController@show');
+Route::post('cass','SupportTicketController@store');
+Route::put('cass/{cass}','SupportTicketController@update');
+Route::delete('cass/{id}','SupportTicketController@delete');
+
+//support ticket remarks
+Route::get('supportTicketRemarks/{id}','SupportTicketController@index');
+Route::get('supportTicketRemarks/{id}','SupportTicketController@show');
+Route::post('supportTicketRemarks','SupportTicketController@store');
+
 
 
 
