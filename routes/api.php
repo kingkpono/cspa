@@ -72,6 +72,8 @@ Route::delete('serviceTypes/{serviceType}','ServiceTypeController@delete');
 //sales tickets
 Route::get('salesTickets','SalesTicketController@index');
 Route::get('salesTickets/{id}','SalesTicketController@show');
+
+Route::get('supportTickets-by-user/{id}','SalesTicketController@getTicketsByUserId');
 Route::post('salesTickets','SalesTicketController@store');
 Route::put('salesTickets/{salesTicket}','SalesTicketController@update');
 Route::delete('salesTickets/{id}','SalesTicketController@delete');
@@ -82,6 +84,7 @@ Route::get('supportTickets/{id}','SupportTicketController@show');
 Route::post('supportTickets','SupportTicketController@store');
 Route::put('supportTickets/{supportTicket}','SupportTicketController@update');
 Route::delete('supportTickets/{id}','SupportTicketController@delete');
+
 
 //cass
 Route::get('cass','CassObjectController@index');
@@ -98,6 +101,10 @@ Route::post('supportTicketRemarks','SupportTicketRemarkController@store');
 //sales ticket remarks
 Route::get('salesTicketRemarks/ticket/{id}','SalesTicketRemarkController@index');
 Route::post('salesTicketRemarks','SalesTicketRemarkController@store');
+
+//flexcom
+Route::post('flexcom/tickets','FlexcomController@storeTicket');
+
 
 
 

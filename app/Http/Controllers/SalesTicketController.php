@@ -30,6 +30,21 @@ class SalesTicketController extends Controller
         return response()->json($response,200);
     }
 
+    public  function getTicketsByUserId($id)
+    {
+        $salesTickets=SalesTicket::whereRaw('officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->get();
+
+        if(is_null($salesTickets))
+        {
+            return response()->json(null,404);
+
+        }
+
+        
+        $response=new SalesTicketResource(SalesTicket::whereRaw('officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->get(),200);
+        return response()->json($response,200);
+    }
+
     public  function store(Request $request)
     {
 
@@ -50,9 +65,9 @@ class SalesTicketController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors(),400);
         }
-
-        
-
+             
+        $officers=explode(',',request('project_officers'));
+    
        
             $salesTicket=SalesTicket::create([
             'client_id' => request('client_id'),
@@ -67,7 +82,9 @@ class SalesTicketController extends Controller
             'start_date' => request('start_date'), 
             'end_date' => request('end_date'), 
             'status' => 'Pending', 
-            'project_officers' => request('project_officers'), 
+            'officer1' => $officers[0], 
+            'officer2' => $officers[1], 
+            'officer3' => $officers[2], 
             'attachment' =>  request('attachment')
 
         ]);

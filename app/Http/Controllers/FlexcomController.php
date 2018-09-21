@@ -60,38 +60,74 @@ class FlexcomClientController extends Controller
         return response()->json($response,200);
     }
 
-    public  function store(Request $request)
+    public  function storeTicket(Request $request)
     {
-        $rules=[
-            'client_type'=>'required',
-            'name'=>'required'
 
+   //first create a support ticket
+         
+        $rules=[
+         
+            'client_id'=>'required',
+            'service_type_id'=>'required',
+            'project_details'=>'required',
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'project_officers'=>'required'
         ];
-        try{
         $validator=Validator::make($request->all(),$rules);
 
         if($validator->fails()){
-            return $this->error($validator->errors(),400);
+            return response()->json($validator->errors(),400);
         }
-        
+
        
-        $client=FlexcomClient::create([
-            'name' => request('name'),
-            'email' => request('email'),
-            'client_type' => request('client_type'),
-            'sector_id' => request('sector_id'),
-            'vendor_status' => request('vendor_status'),
-            'contact_person' => request('contact_person'),
-            'mobile'       => request('mobile'),
-            'work_phone'       => request('work_phone'),
-            'bdm_person_id'       => request('bdm_person_id'),
-            'address'          => request('address')
+       
+            $supportTicket=SupportTicket::create([
+            'client_id' => request('client_id'),
+            'service_type_id' => request('service_type_id'),     
+            'description' => request('description'),   
+            'project_details' => request('project_details'), 
+            'start_date' => request('start_date'), 
+            'end_date' => request('end_date'), 
+            'status' => 'Pending', 
+            'project_officers' => request('project_officers'), 
+            'attachment' =>  request('attachment')
 
         ]);
-        return response()->json(['message' => 'FlexcomClient added successfully','data'=>$client], 200);
-    } catch (\Exception $error) {
-        return response()->json('Error creating client', 501);
-    }
+
+         //then create a flexcom create a support ticket
+         if($supportTicket)
+         {
+          $rules=[
+           
+            'support_ticket_id'=>'required',
+            'issue_type'=>'required',
+            'mobile_numbers'=>'required'
+
+           ];
+          try{
+            $validator=Validator::make($request->all(),$rules);
+
+             if($validator->fails()){
+            return $this->error($validator->errors(),400);
+           }
+        
+       
+           $flexTicket=FlexcomTicket::create([
+            'support_ticket_id' => $client->id,
+            'issue_type' => request('issue_type'),
+            'mobile_numbers' => request('mobile_numbers')      
+
+            ]);
+             return response()->json(['message' => 'Flexcom ticket added successfully','data'=>$client], 200);
+            } catch (\Exception $error) {
+              return response()->json('Error creating flexcom ticket', 501);
+             }
+            }//end if support ticket 
+            else{
+                return response()->json('Error creating flexcom ticket', 501);
+
+            }    
 
     }
 

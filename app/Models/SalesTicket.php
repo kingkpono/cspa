@@ -13,7 +13,7 @@ class SalesTicket extends Model
     protected $fillable = [
        'client_id', 'service_type_id' ,'device','serial_number', 
         'device_description', 'ticket_contact_email', 'ticket_contact_phone','device_warranty','project_details', 'start_date','end_date',
-            'status','project_officers', 'attachment'];
+            'status','officer1','officer2','officer3', 'attachment'];
 
     
     public function client()
@@ -26,6 +26,19 @@ class SalesTicket extends Model
         return $this->belongsTo('App\Models\ServiceType', 'service_type_id');
     }
 
+    public function officer1()
+    {
+        return $this->belongsTo('App\Models\Auth\User');
+    }
+    public function officer2()
+    {
+        return $this->belongsTo('App\Models\Auth\User');
+    }
+    public function officer3()
+    {
+        return $this->belongsTo('App\Models\Auth\User');
+    }
+
    
-   
+  
 }

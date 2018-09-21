@@ -13,7 +13,7 @@ class SupportTicket extends Model
     protected $fillable = [
        'client_id', 'service_type_id',
         'description', 'project_details', 'start_date','end_date',
-            'status','project_officers', 'attachment'];
+            'status',  'officer1','officer2','officer3',  'attachment'];
 
     
     public function client()
@@ -27,5 +27,17 @@ class SupportTicket extends Model
     }
 
    
+    public function officer1()
+    {
+        return $this->belongsTo('App\Models\Auth\User');
+    }
+    public function officer2()
+    {
+        return $this->belongsTo('App\Models\Auth\User');
+    }
+    public function officer3()
+    {
+        return $this->belongsTo('App\Models\Auth\User');
+    }
    
 }

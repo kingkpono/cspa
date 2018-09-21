@@ -47,6 +47,7 @@ class SupportTicketController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors(),400);
         }
+        $officers=explode(',',request('project_officers'));
 
        
        
@@ -58,7 +59,9 @@ class SupportTicketController extends Controller
             'start_date' => request('start_date'), 
             'end_date' => request('end_date'), 
             'status' => 'Pending', 
-            'project_officers' => request('project_officers'), 
+            'officer1' => $officers[0], 
+            'officer2' => $officers[1], 
+            'officer3' => $officers[2], 
             'attachment' =>  request('attachment')
 
         ]);

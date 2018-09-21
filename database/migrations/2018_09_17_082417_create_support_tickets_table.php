@@ -24,7 +24,12 @@ class CreateSupportTicketsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('status', array('Pending', 'Closed',' In Progress'))->default('Pending');
-            $table->string('project_officers');
+            $table->integer('officer1')->unsigned()->index();
+            $table->foreign('officer1')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('officer2')->unsigned()->index();
+            $table->foreign('officer2')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('officer3')->unsigned()->index();
+            $table->foreign('officer3')->references('id')->on('users')->onDelete('cascade');
             $table->string('attachment')->nullable();
             $table->timestamps();
         });
@@ -37,6 +42,12 @@ class CreateSupportTicketsTable extends Migration
      */
     public function down()
     {
+        Schema::table('support_tickets', function (Blueprint $table) {
+            $table->dropForeign('officer1_foreign');
+            $table->dropForeign('officer2_foreign');
+            $table->dropForeign('officer3_foreign');
+
+        });
         Schema::dropIfExists('support_tickets');
     }
 }
