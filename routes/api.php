@@ -108,6 +108,12 @@ Route::post('salesTicketRemarks','SalesTicketRemarkController@store');
 Route::post('flexcom/tickets','FlexcomController@storeTicket');
 
 
+//dashboard
+Route::get('dashboard-reports','DashboardController@getCounts');
+Route::get('staff-dashboard-reports/{id}','DashboardController@getCountsForStaff');
+
+
+
 
 
 
