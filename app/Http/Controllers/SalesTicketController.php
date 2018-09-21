@@ -26,7 +26,7 @@ class SalesTicketController extends Controller
 
         }
 
-        $response=new SalesTicketResource(SalesTicket::findOrFail($id)->with('client')->with('serviceType')->get(),200);
+        $response=new SalesTicketResource(SalesTicket::findOrFail($id)->with('client')->with('serviceType')->with('officer1')->with('officer2')->with('officer3')->get(),200);
         return response()->json($response,200);
     }
 

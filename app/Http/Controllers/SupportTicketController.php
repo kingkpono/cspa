@@ -13,7 +13,7 @@ class SupportTicketController extends Controller
     
     public  function index()
     {
-        return response()->json(SupportTicket::with('client')->with('serviceType')->get(),200);
+        return response()->json(SupportTicket::with('client')->with('serviceType')->with('officer1')->with('officer2')->with('officer3')->get(),200);
     }
 
     public  function show($id)
@@ -25,7 +25,7 @@ class SupportTicketController extends Controller
 
         }
 
-        $response=new SupportTicketResource(SupportTicket::findOrFail($id)->with('client')->with('serviceType')->get(),200);
+        $response=new SupportTicketResource(SupportTicket::findOrFail($id)->with('client')->with('serviceType')->with('officer1')->with('officer2')->with('officer3')->get(),200);
         return response()->json($response,200);
     }
     
