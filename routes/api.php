@@ -89,6 +89,7 @@ Route::delete('supportTickets/{id}','SupportTicketController@delete');
 
 //cass
 Route::get('cass','CassObjectController@index');
+Route::get('cass-types','CassObjectController@getCassTypes');
 Route::get('cass/{id}','CassObjectController@show');
 Route::post('cass','CassObjectController@store');
 Route::put('cass/{cass}','CassObjectController@update');

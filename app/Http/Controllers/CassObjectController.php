@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CassObject;
+use App\Models\CassType;
 use App\Http\Resources\CassObject as  CassObjectResource;
 use Illuminate\Support\Facades\DB;
 
@@ -28,6 +29,12 @@ class CassObjectController extends Controller
 
         $response=new CassObjectResource(CassObject::findOrFail($id)->with('client')->with('serviceType')->with('cassType')->with('user')->get(),200);
         return response()->json($response,200);
+    }
+
+    public  function getCassTypes()
+    {
+        return response()->json(CassType::get(),200);
+
     }
 
     public  function store(Request $request)
