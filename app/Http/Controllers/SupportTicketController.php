@@ -31,7 +31,7 @@ class SupportTicketController extends Controller
     
     public  function getTicketsByUserId($id)
     {
-        $supportTickets=SupportTicket::whereRaw('officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->get();
+        $supportTickets=SupportTicket::with('client')->with('serviceType')->with('officer1')->with('officer2')->with('officer3')->whereRaw('officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->get();
 
         if(is_null($supportTickets))
         {
@@ -40,8 +40,7 @@ class SupportTicketController extends Controller
         }
 
         
-        $response=new SupportTicketResource(SupportTicket::whereRaw('officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->get(),200);
-        return response()->json($response,200);
+        return response()->json($supportTickets,200);
     }
     public  function store(Request $request)
     {

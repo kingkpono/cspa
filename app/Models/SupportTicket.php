@@ -29,15 +29,15 @@ class SupportTicket extends Model
    
     public function officer1()
     {
-        return $this->belongsTo('App\Models\Auth\User');
+        return $this->belongsTo('App\Models\Auth\User', 'officer1');
     }
     public function officer2()
     {
-        return $this->belongsTo('App\Models\Auth\User');
+        return $this->belongsTo('App\Models\Auth\User','officer2');
     }
     public function officer3()
     {
-        return $this->belongsTo('App\Models\Auth\User');
+        return $this->belongsTo('App\Models\Auth\User','officer3');
     }
    
 }

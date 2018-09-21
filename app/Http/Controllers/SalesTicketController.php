@@ -32,7 +32,7 @@ class SalesTicketController extends Controller
 
     public  function getTicketsByUserId($id)
     {
-        $salesTickets=SalesTicket::with('client')->with('serviceType')->whereRaw('officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->get();
+        $salesTickets=SalesTicket::with('client')->with('serviceType')->with('officer1')->with('officer2')->with('officer3')->whereRaw('officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->get();
         
         if(is_null($salesTickets))
         {
@@ -41,8 +41,8 @@ class SalesTicketController extends Controller
         }
 
         
-        $response=SalesTicket::whereRaw('officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->get();
-        return response()->json($response,200);
+        
+        return response()->json( $salesTickets,200);
     }
 
     public  function store(Request $request)
