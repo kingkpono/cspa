@@ -14,7 +14,7 @@ class SalesTicketController extends Controller
     
     public  function index()
     {
-        return response()->json(SalesTicket::with('client')->with('serviceType')->get(),200);
+        return response()->json(SalesTicket::with('client')->with('serviceType')->with('officer1')->with('officer2')->with('officer3')->get(),200);
     }
 
     public  function show($id)
