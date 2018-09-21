@@ -28,7 +28,21 @@ class SupportTicketController extends Controller
         $response=new SupportTicketResource(SupportTicket::findOrFail($id)->with('client')->with('serviceType')->get(),200);
         return response()->json($response,200);
     }
+    
+    public  function getTicketsByUserId($id)
+    {
+        $supportTickets=SupportTicket::whereRaw('officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->get();
 
+        if(is_null($supportTickets))
+        {
+            return response()->json(null,404);
+
+        }
+
+        
+        $response=new SupportTicketResource(SupportTicket::whereRaw('officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->get(),200);
+        return response()->json($response,200);
+    }
     public  function store(Request $request)
     {
 

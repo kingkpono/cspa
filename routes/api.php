@@ -73,7 +73,7 @@ Route::delete('serviceTypes/{serviceType}','ServiceTypeController@delete');
 Route::get('salesTickets','SalesTicketController@index');
 Route::get('salesTickets/{id}','SalesTicketController@show');
 
-Route::get('supportTickets-by-user/{id}','SalesTicketController@getTicketsByUserId');
+Route::get('salesTickets-by-user/{id}','SalesTicketController@getTicketsByUserId');
 Route::post('salesTickets','SalesTicketController@store');
 Route::put('salesTickets/{salesTicket}','SalesTicketController@update');
 Route::delete('salesTickets/{id}','SalesTicketController@delete');
@@ -81,6 +81,7 @@ Route::delete('salesTickets/{id}','SalesTicketController@delete');
 //support tickets
 Route::get('supportTickets','SupportTicketController@index');
 Route::get('supportTickets/{id}','SupportTicketController@show');
+Route::get('supportTickets-by-user/{id}','SupportTicketController@getTicketsByUserId');
 Route::post('supportTickets','SupportTicketController@store');
 Route::put('supportTickets/{supportTicket}','SupportTicketController@update');
 Route::delete('supportTickets/{id}','SupportTicketController@delete');
