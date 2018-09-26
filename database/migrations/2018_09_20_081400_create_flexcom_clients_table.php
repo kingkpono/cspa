@@ -17,7 +17,7 @@ class CreateFlexcomClientsTable extends Migration
             $table->increments('id');
             $table->integer('client_id')->unsigned()->index();         
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-            
+            $table->unique('client_id');
             $table->timestamps();
         });
     }
