@@ -27,7 +27,7 @@ class FlexcomController extends Controller
     }
     public  function getClients()
     {
-        return response()->json(Client::where('service_type_id',2)->with('sector')->with('serviceType')->get(),200);
+        return response()->json(Client::where('service_type_id',2)->with('bdmPerson')->with('sector')->with('serviceType')->get(),200);
     }
 
     public  function getLines()
