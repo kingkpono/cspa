@@ -11,7 +11,7 @@ class CassObject extends Model
     use Notifiable;
 
     protected $fillable = [
-       'client_id', 'service_type_id' ,'cass_type_id','due_month', 
+       'client_id','id', 'service_type_id' ,'cass_type_id','due_month', 
         'due_year', 'location', 'remark','user_id'];
 
     

@@ -109,6 +109,8 @@ Route::post('salesTicketRemarks','SalesTicketRemarkController@store');
 Route::post('flexcom/tickets','FlexcomController@storeTicket');
 Route::get('flexcom/tickets','FlexcomController@getTickets');
 Route::get('flexcom/clients','FlexcomController@getClients');
+Route::get('flexcom/lines','FlexcomController@getLines');
+Route::post('flexcom/lines','FlexcomController@storeLine');
 Route::post('flexcom/clients','FlexcomController@storeClient');
 
 

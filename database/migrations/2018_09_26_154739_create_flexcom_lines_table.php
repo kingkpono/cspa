@@ -20,9 +20,8 @@ class CreateFlexcomLinesTable extends Migration
             $table->integer('client_id')->unsigned()->index();
             $table->enum('platform', array('HYBRID', 'BSCS', 'IN', 'SMART 5000'));
             $table->date('activation_date');
-            $table->enum('status', array('HYBRID', 'BSCS', 'IN', 'SMART 5000'));
+            $table->enum('status', array('Active', 'Inactive'));
             $table->string('remark')->nullable();
-
             $table->timestamps();
         });
     }
@@ -34,6 +33,10 @@ class CreateFlexcomLinesTable extends Migration
      */
     public function down()
     {
+
+        Schema::table('flexcom_lines', function (Blueprint $table) {
+            $table->dropForeign('client_id_foreign');
+        });
         Schema::dropIfExists('flexcom_lines');
     }
 }

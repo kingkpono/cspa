@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\FlexcomClient;
 use App\Models\FlexcomTicket;
+use App\Models\FlexcomLine;
 use App\Models\SupportTicket;
 use App\Http\Resources\FlexcomClient as  FlexcomClientResource;
 use App\Http\Resources\FlexcomTicket as  FlexcomTicketResource;
@@ -24,7 +25,10 @@ class FlexcomController extends Controller
         return response()->json(FlexcomClient::with('client')->get(),200);
     }
 
-  
+    public  function getLines()
+    {
+        return response()->json(FlexcomLine::with('client')->get(),200);
+    }
     public  function getTickets()
     {
         return response()->json(FlexcomTicket::with('supportTicket')->get(),200);
@@ -179,6 +183,40 @@ class FlexcomController extends Controller
              return response()->json(['message' => 'Flexcom client added successfully','data'=> $flexClient], 200);
             } catch (\Exception $error) {
               return response()->json(['message' => 'Error creating flexcom  client'], 501);
+             }
+             
+
+    }
+
+
+    public  function storeLine(Request $request)
+    {
+       
+           $rules=[ 'client_id'=>'required',
+           'mobile_number'=>'required',
+           'platform'=>'required',
+           'activation_date'=>'required'
+        ];
+           try{
+            $validator=Validator::make($request->all(),$rules);
+
+             if($validator->fails()){
+            return $this->error($validator->errors(),400);
+             }
+     
+           $flexLine=FlexcomLine::create([
+            'client_id' => request('client_id'),
+            'mobile_number' => request('mobile_number'),
+            'platform' => request('platform'),
+            'activation_date' => request('activation_date'),
+            'status' => 'Active',
+            'remark' => request('remark'),
+
+            
+            ]);
+             return response()->json(['message' => 'Flexcom line added successfully','data'=> $flexLine], 200);
+            } catch (\Exception $error) {
+              return response()->json(['message' => 'Error creating flexcom line'], 501);
              }
              
 
