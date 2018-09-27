@@ -39,9 +39,10 @@ class FlexcomController extends Controller
         return response()->json(FlexcomTicket::with('supportTicket')->get(),200);
     }
 
-    public  function getTicketsByStaff()
+    public  function getTicketsByStaff(Request $request)
     {
-        return response()->json(FlexcomTicket::with('supportTicket')->get(),200);
+        
+        return response()->json(FlexcomTicket::join('support_tickets', 'flexcom_tickets.support_ticket_id', '=', 'support_tickets.id')->whereRaw('support_tickets.officer1='.$request->id.' OR support_tickets.officer2='.$request->id.' OR support_tickets.officer3='.$request->id)->with('supportTicket')->get(),200);
     }
 
    
