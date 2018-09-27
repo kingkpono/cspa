@@ -12,7 +12,7 @@ class CassObject extends Model
 
     protected $fillable = [
        'client_id', 'service_type_id' ,'cass_type_id','due_month', 
-        'due_year', 'location', 'remark','added_by'];
+        'due_year', 'location', 'remark','user_id'];
 
     
     public function client()

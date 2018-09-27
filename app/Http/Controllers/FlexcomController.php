@@ -164,7 +164,7 @@ class FlexcomController extends Controller
        
            $rules=[
          
-            'client_id'=>'required',
+            'client_id'=>'required|unique:flexcom_clients',
            
            ];
            try{
