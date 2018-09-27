@@ -29,6 +29,19 @@ class ServiceTypesTableSeeder extends Seeder
             "description"=>"Time Attendance Mgt Software"
 
         ]);
+         // Add the sector
+         ServiceType::create([
+            "service_type"=>"Flexcom",
+            "description"=>"Flexcom"
+
+        ]);
+
+          // Add the sector
+          ServiceType::create([
+            "service_type"=>"CCTV",
+            "description"=>"CCTV"
+
+        ]);
     }
 
 }

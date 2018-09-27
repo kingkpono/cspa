@@ -28,6 +28,7 @@ class ClientsTableSeeder extends Seeder
             "name"=>"ABC & Sons",
             "email"=>"prospect@yahoo.com",
             "client_type"=>"Prospect",
+            "service_type_id"=>1,
             "sector_id"=>1,
             "vendor_status"=>"Pending",
             "contact_person"=> "Abiola",

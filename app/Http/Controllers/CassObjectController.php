@@ -33,8 +33,8 @@ class CassObjectController extends Controller
         if($validator->fails()){
             return $this->error($validator->errors(),400);
         }
-        return response()->json(CassObject::where('due_year', '>=', $request->due_year)
-        ->where('due_month', '>=', $request->due_month)->with('client')->with('serviceType')->with('cassType')->with('user')->get(),200);
+        return response()->json(CassObject::where('due_year', '<=', $request->due_year)
+        ->where('due_month', '<=', $request->due_month)->with('client')->with('serviceType')->with('cassType')->with('user')->get(),200);
     }
 
  

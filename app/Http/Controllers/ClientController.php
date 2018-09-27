@@ -18,30 +18,30 @@ class ClientController extends Controller
 
     public  function index()
     {
-        return response()->json(Client::with('bdmperson')->with('sector')->get(),200);
+        return response()->json(Client::with('bdmperson')->with('sector')->with('serviceType')->get(),200);
     }
 
     public  function getClientsByTypeAndSector($clientType,$sector_id)
     {    
         return response()->json(Client::where('client_type', $clientType)->where('sector_id',
-         $sector_id)->with('bdmperson')->with('sector')->get(),200);
+         $sector_id)->with('bdmperson')->with('sector')->with('serviceType')->get(),200);
     }
 
    
     
     public  function getClientsByBdmId($id)
     {    
-        return response()->json(Client::where('bdm_person_id', $id)->with('sector')->with('bdmperson')->get(),200);
+        return response()->json(Client::where('bdm_person_id', $id)->with('sector')->with('serviceType')->with('bdmperson')->get(),200);
     }
     
     public  function getClientsBySectorId($id)
     {    
-        return response()->json(Client::where('sector_id', $id)->with('bdmperson')->with('sector')->get(),200);
+        return response()->json(Client::where('sector_id', $id)->with('bdmperson')->with('serviceType')->with('sector')->get(),200);
     }
     
     public  function getClientsByType($type)
     {
-        return response()->json(Client::where('client_type',$type)->with('bdmperson')->with('sector')->get(),200);
+        return response()->json(Client::where('client_type',$type)->with('bdmperson')->with('serviceType')->with('sector')->get(),200);
     }
 
     
@@ -55,7 +55,7 @@ class ClientController extends Controller
 
         }
 
-        $response=new ClientResource(Client::findOrFail($id)->with('bdmperson')->with('sector')->get(),200);
+        $response=new ClientResource(Client::findOrFail($id)->with('bdmperson')->with('serviceType')->with('sector')->get(),200);
         return response()->json($response,200);
     }
 

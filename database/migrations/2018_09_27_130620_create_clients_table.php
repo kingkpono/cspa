@@ -18,6 +18,8 @@ class CreateClientsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('contact_person');
+            $table->integer('service_type_id')->unsigned()->index();
+            $table->foreign('service_type_id')->references('id')->on('service_types')->onDelete('cascade');    
             $table->string('mobile')->nullable();
             $table->string('work_phone')->nullable();
             $table->integer('bdm_person_id')->unsigned()->index();
@@ -41,6 +43,7 @@ class CreateClientsTable extends Migration
         Schema::table('clients', function (Blueprint $table) {
             $table->dropForeign('clients_sector_id_foreign');
             $table->dropForeign('clients_bdm_person_id_foreign');
+            $table->dropForeign('clients_service_type_id_foreign');
 
         });
         

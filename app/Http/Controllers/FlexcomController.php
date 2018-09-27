@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\FlexcomClient;
+use App\Models\Client;
 use App\Models\FlexcomTicket;
 use App\Models\FlexcomLine;
 use App\Models\SupportTicket;
@@ -27,7 +27,7 @@ class FlexcomController extends Controller
     }
     public  function getClients()
     {
-        return response()->json(FlexcomClient::with('client')->get(),200);
+        return response()->json(Client::where('service_type',2)->with('client')->with('client')->get(),200);
     }
 
     public  function getLines()
@@ -40,20 +40,6 @@ class FlexcomController extends Controller
     }
 
    
-    
-
-    public  function getClient($id)
-    {
-        $client=FlexcomClient::find($id);
-        if(is_null($client))
-        {
-            return response()->json(null,404);
-
-        }
-
-        $response=new FlexcomClientResource(FlexcomClient::findOrFail($id)->with('client')->get(),200);
-        return response()->json($response,200);
-    }
 
     
     public  function getTicket($id)
