@@ -19,7 +19,12 @@ class FlexcomController extends Controller
     {
         return FlexcomClient::class;
     }
+    
 
+    public  function getSummary()
+    {
+        return response()->json(FlexcomLine::with('client')->get(),200);
+    }
     public  function getClients()
     {
         return response()->json(FlexcomClient::with('client')->get(),200);
