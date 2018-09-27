@@ -27,7 +27,7 @@ class FlexcomController extends Controller
     }
     public  function getClients()
     {
-        return response()->json(Client::where('service_type',2)->with('client')->with('client')->get(),200);
+        return response()->json(Client::where('service_type_id',2)->with('client')->with('client')->get(),200);
     }
 
     public  function getLines()
@@ -35,6 +35,11 @@ class FlexcomController extends Controller
         return response()->json(FlexcomLine::with('client')->get(),200);
     }
     public  function getTickets()
+    {
+        return response()->json(FlexcomTicket::with('supportTicket')->get(),200);
+    }
+
+    public  function getTicketsByStaff()
     {
         return response()->json(FlexcomTicket::with('supportTicket')->get(),200);
     }
