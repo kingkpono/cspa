@@ -18,6 +18,27 @@ class CassObjectController extends Controller
         return response()->json(CassObject::with('client')->with('serviceType')->with('cassType')->with('user')->get(),200);
     }
 
+    public  function getDue(Request $request)
+    {
+
+         
+        $rules=[
+      
+            'due_month'=>'required',
+            'due_year'=>'required'
+          
+        ];
+        $validator=Validator::make($request->all(),$rules);
+
+        if($validator->fails()){
+            return $this->error($validator->errors(),400);
+        }
+        return response()->json(CassObject::where('due_year', '<=', $request->due_year)
+        ->where('due_month', '<=', $request->due_month)->with('client')->with('serviceType')->with('cassType')->with('user')->get(),200);
+    }
+
+ 
+
     public  function show($id)
     {
         $cassObject=CassObject::find($id);
