@@ -15,7 +15,7 @@ class Client extends Model
      * @var array
      */
     protected $fillable = [
-        'id','client_type','service_type-id','vendor_status','sector_id','name','contact_person','mobile','bdm_person_id', 'email',
+        'id','client_type','service_type_id','vendor_status','sector_id','name','contact_person','mobile','bdm_person_id', 'email',
          'address'
     ];
 
