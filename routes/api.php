@@ -113,6 +113,7 @@ Route::get('flexcom/lines','FlexcomController@getLines');
 Route::get('flexcom/tickets/staff/{id}','FlexcomController@getTicketsByStaff');
 Route::post('flexcom/lines','FlexcomController@storeLine');
 Route::post('flexcom/clients','FlexcomController@storeClient');
+Route::get('flexcom/lines/summary','FlexcomController@getSummary');
 
 
 

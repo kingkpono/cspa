@@ -21,10 +21,7 @@ class FlexcomController extends Controller
     }
     
 
-    public  function getSummary()
-    {
-        return response()->json(FlexcomLine::with('client')->get(),200);
-    }
+   
     public  function getClients()
     {
         return response()->json(Client::where('service_type_id',2)->with('bdmPerson')->with('sector')->with('serviceType')->get(),200);
@@ -34,6 +31,12 @@ class FlexcomController extends Controller
     {
         return response()->json(FlexcomLine::with('client')->get(),200);
     }
+    
+    public  function getSummary()
+    {
+        return response()->json(FlexcomLine::select('select count(mobile_number),count(case status when "Active" then 1 else 0 end)AS active,count(case status when "Inactive" then 1 else 0 end)AS inactive, client_id from flexcom_lines group by client_id')->with('client')->get(),200);
+    }
+   
     public  function getTickets()
     {
         return response()->json(FlexcomTicket::with('supportTicket')->get(),200);

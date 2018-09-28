@@ -28,7 +28,7 @@ class Client extends Model
 
     public function bdmperson()
     {
-        return $this->belongsTo('App\Models\BdmPerson', 'bdm_person_id');
+        return $this->belongsTo('App\Models\User', 'bdm_person_id');
     }
 
     public function serviceType()

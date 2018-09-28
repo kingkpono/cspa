@@ -18,7 +18,7 @@ class CreateFlexcomLinesTable extends Migration
             $table->string('mobile_number');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->integer('client_id')->unsigned()->index();
-            $table->enum('platform', array('HYBRID', 'BSCS', 'IN', 'SMART 5000'));
+            $table->enum('platform', array('HYBRID','CORPORATE', 'BSCS', 'IN', 'SMART 5000'));
             $table->date('activation_date');
             $table->enum('status', array('Active', 'Inactive'));
             $table->string('remark')->nullable();
