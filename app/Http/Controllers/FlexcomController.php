@@ -37,7 +37,7 @@ class FlexcomController extends Controller
     {
         $users = DB::table('flexcom_lines')
                      ->join('clients', 'flexcom_lines.client_id', '=', 'clients.id')
-                     ->select(DB::raw('clients.name,count(flexcom_lines.mobile_number) as lines,
+                     ->select(DB::raw('clients.name,count(flexcom_lines.mobile_number) AS mobile,
                      count(case flexcom_lines.status when "Active" then 1 else 0 end) AS active,
                      count(case flexcom_lines.status when "Inactive" then 1 else 0 end) AS inactive, flexcom_lines.client_id'))
                      ->groupBy('client_id')
