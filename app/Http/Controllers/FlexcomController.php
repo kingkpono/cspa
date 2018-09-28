@@ -9,6 +9,7 @@ use App\Http\Resources\FlexcomClient as  FlexcomClientResource;
 use App\Http\Resources\FlexcomTicket as  FlexcomTicketResource;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
 
 use Validator;
 
@@ -34,7 +35,15 @@ class FlexcomController extends Controller
     
     public  function getSummary()
     {
-        return response()->json(FlexcomLine::select('select count(mobile_number),count(case status when "Active" then 1 else 0 end)AS active,count(case status when "Inactive" then 1 else 0 end)AS inactive, client_id from flexcom_lines group by client_id')->with('client')->get(),200);
+        $users = DB::table('flexcom_lines')
+                     ->join('clients', 'flexcom_lines.client_id', '=', 'clients.id')
+                     ->select(DB::raw('clients.name,count(flexcom_lines.mobile_number),
+                     count(case flexcom_lines.status when "Active" then 1 else 0 end) AS active,
+                     count(case flexcom_lines.status when "Inactive" then 1 else 0 end) AS inactive, flexcom_lines.client_id'))
+                     ->groupBy('client_id')
+                     ->get();
+       
+        return response()->json( $users,200);
     }
    
     public  function getTickets()
