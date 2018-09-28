@@ -35,7 +35,7 @@ class BdmPersonController extends Controller
     public  function store(Request $request)
     {
         $rules=[
-            'name'=>'required',
+            'user_id'=>'required|unique:bdmpeople',
         ];
         $validator=Validator::make($request->all(),$rules);
 
@@ -45,7 +45,7 @@ class BdmPersonController extends Controller
 
        
         $BdmPerson=BdmPerson::create([
-            'name' => request('name'),
+            'user_id' => request('user_id'),
             
 
         ]);

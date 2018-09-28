@@ -13,6 +13,12 @@ class BdmPerson extends Model
      * @var array
      */
     protected $fillable = [
-        'id','name'
+        'id','user_id'
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\Auth\User');
+    }
 }

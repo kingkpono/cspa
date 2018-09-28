@@ -35,7 +35,7 @@ class CreateFlexcomLinesTable extends Migration
     {
 
         Schema::table('flexcom_lines', function (Blueprint $table) {
-            $table->dropForeign('client_id_foreign');
+            $table->dropForeign('flexcom_lines_client_id_foreign');
         });
         Schema::dropIfExists('flexcom_lines');
     }

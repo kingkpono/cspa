@@ -15,7 +15,8 @@ class CreateBdmPersonsTable extends Migration
     {
         Schema::create('bdm_people', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->integer('user_id')->unsigned()->index();         
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +28,9 @@ class CreateBdmPersonsTable extends Migration
      */
     public function down()
     {
+        Schema::table('bdmp_people', function (Blueprint $table) {
+            $table->dropForeign('cuser_id_foreign');
+        });
         Schema::dropIfExists('bdm_people');
     }
 }

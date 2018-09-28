@@ -119,10 +119,7 @@ class SalesTicketController extends Controller
     public  function update(Request $request, SalesTicket $salesTicket)
     {
         
-
         $salesTicket->update($request->all());
-         
-      
         return response()->json($salesTicket,200);
 
     }
