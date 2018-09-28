@@ -110,50 +110,8 @@ class SupportTicketController extends Controller
     {
         
 
-        $officers=explode(',',request('project_officers'));
 
-       
-        $officersCount=count($officers);
-         $officer1=0;
-         $officer2=0;
-         $officer3=0;
-        
-         if($officersCount==1)
-         {
-            $officer1=$officers[0];
-            $officer2=$officers[0];
-            $officer3=$officers[0];
-         }else if($officersCount==2)
-         {
-            $officer1=$officers[0];
-            $officer2=$officers[1];
-            $officer3=$officers[1];
-         }
-         else if($officersCount==3)
-         {
-            $officer1=$officers[0];
-            $officer2=$officers[1];
-            $officer3=$officers[2];
-         }
-    
-       
-            $data=[
-            'id' => request('id'),
-            'client_id' => request('client_id'),
-            'service_type_id' => request('service_type_id'),     
-            'description' => request('description'),   
-            'project_details' => request('project_details'), 
-            'start_date' => request('start_date'), 
-            'end_date' => request('end_date'), 
-            'status' => 'Pending', 
-            'officer1' => $officer1, 
-            'officer2' => $officer2, 
-            'officer3' => $officer3, 
-            'attachment' =>  request('attachment')
-
-        ];
-
-        $supportTicket->update($data);
+        $supportTicket->update($request->all());
          
       
         return response()->json($supportTicket,200);
