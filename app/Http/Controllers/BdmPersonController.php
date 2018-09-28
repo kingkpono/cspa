@@ -16,7 +16,7 @@ class BdmPersonController extends Controller
 
     public  function index()
     {
-        return response()->json(BdmPerson::get(),200);
+        return response()->json(BdmPerson::with('user')->get(),200);
     }
 
     public  function show($id)
