@@ -31,7 +31,12 @@ class DashboardController extends Controller
     
     public  function getClientsCount()
     {
-        return Client::count();
+        return Client::where('client_type','Client')->count();
+    }
+
+    public  function getProspectsCount()
+    {
+        return Client::where('client_type','Prospect')->count();
     }
 
     public function getCounts()
@@ -39,14 +44,19 @@ class DashboardController extends Controller
 
         
         return response()->json([
+            'prospectsCount'=>$this->getProspectsCount(),
+            'clientsCount'=>$this->getClientsCount(),
+            'cctvClosedTicketsCount'=>$this->getClosedCctvTicketsCount(),
+            'flexcomClosedTicketsCount'=>$this->getClosedFlexcomTicketsCount(),
+            'tamsClosedTicketsCount'=>$this->getClosedTamsTicketsCount(),
             'staffCount'=>$this->getStaffCount(),    
-            'cctvTicketsCount'=>$this->getCctvTicketsCount(),
-            'flexcomTicketsCount'=>$this->getFlexcomTicketsCount(),
-            'tamsTicketsCount'=>$this->getTamsTicketsCount(),
+            'cctvOpenTicketsCount'=>$this->getOpenCctvTicketsCount(),
+            'flexcomOpenTicketsCount'=>$this->getOpenFlexcomTicketsCount(),
+            'tamsOpenTicketsCount'=>$this->getOpenTamsTicketsCount(),
             'openSupportTicketsCount'=>$this->getOpenSupportTickets(),
             'openSalesTicketsCount'=>$this->getOpenSalesTickets(),
             'clientsCount'=>$this->getClientsCount(),
-        ],200)->header('Content-Type', 'application/json');
+        ],200);
 
     }
 
@@ -63,28 +73,48 @@ class DashboardController extends Controller
         return  $salesTickets;
     }
 
-   
-    public  function getCctvTicketsCount()
+    public  function getOpenCctvTicketsCount()
     {
-        $cctvCount=SupportTicket::where('service_type_id',3)->count();
+        $cctvCount=SupportTicket::whereRaw('service_type_id=3 AND (status="Pending" OR status="In Progress")')->count();
  
         return $cctvCount;
     }
 
-    public  function getTamsTicketsCount()
+    public  function getOpenTamsTicketsCount()
     {
-        $tamsCount=SupportTicket::where('service_type_id',1)->count();
+        $tamsCount=SupportTicket::whereRaw('service_type_id=1 AND (status="Pending" OR status="In Progress")')->count();
  
         return $tamsCount;
     }
 
-    public  function getFlexcomTicketsCount()
+    public  function getOpenFlexcomTicketsCount()
     {
-        $flexCount=SupportTicket::where('service_type_id',2)->count();
+        $flexCount=SupportTicket::whereRaw('service_type_id=2 AND (status="Pending" OR status="In Progress")')->count();
  
         return $flexCount;
     }
 
+
+    public  function getClosedCctvTicketsCount()
+    {
+        $cctvCount=SupportTicket::whereRaw('service_type_id=3 AND status="Closed"')->count();
+ 
+        return $cctvCount;
+    }
+
+    public  function getClosedTamsTicketsCount()
+    {
+        $tamsCount=SupportTicket::whereRaw('service_type_id=1 AND status="Closed" ')->count();
+ 
+        return $tamsCount;
+    }
+
+    public  function getClosedFlexcomTicketsCount()
+    {
+        $flexCount=SupportTicket::whereRaw('service_type_id=2 AND status="Closed"')->count();
+ 
+        return $flexCount;
+    }
     public  function myOpenSupportTickets($id)
     {
         $supportTickets=SupportTicket::whereRaw('officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->count();
