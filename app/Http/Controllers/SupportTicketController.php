@@ -42,6 +42,8 @@ class SupportTicketController extends Controller
         
         return response()->json($supportTickets,200);
     }
+
+  
     public  function store(Request $request)
     {
 

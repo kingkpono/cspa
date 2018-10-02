@@ -39,7 +39,10 @@ class DashboardController extends Controller
 
         
         return response()->json([
-            'staffCount'=>$this->getStaffCount(),
+            'staffCount'=>$this->getStaffCount(),    
+            'cctvTicketsCount'=>$this->getCctvTicketsCount(),
+            'flexcomTicketsCount'=>$this->getFlexcomTicketsCount(),
+            'tamsTicketsCount'=>$this->getTamsTicketsCount(),
             'openSupportTicketsCount'=>$this->getOpenSupportTickets(),
             'openSalesTicketsCount'=>$this->getOpenSalesTickets(),
             'clientsCount'=>$this->getClientsCount(),
@@ -61,6 +64,26 @@ class DashboardController extends Controller
     }
 
    
+    public  function getCctvTicketsCount()
+    {
+        $cctvCount=SupportTicket::where('service_type_id',3)->count();
+ 
+        return $cctvCount;
+    }
+
+    public  function getTamsTicketsCount()
+    {
+        $tamsCount=SupportTicket::where('service_type_id',1)->count();
+ 
+        return $tamsCount;
+    }
+
+    public  function getFlexcomTicketsCount()
+    {
+        $flexCount=SupportTicket::where('service_type_id',2)->count();
+ 
+        return $flexCount;
+    }
 
     public  function myOpenSupportTickets($id)
     {
