@@ -95,6 +95,8 @@ class DashboardController extends Controller
     }
 
 
+
+
     public  function getClosedCctvTicketsCount()
     {
         $cctvCount=SupportTicket::whereRaw('service_type_id=3 AND status="Closed"')->count();
@@ -136,9 +138,59 @@ class DashboardController extends Controller
             'myOpenSupportTicketsCount'=>$this->myOpenSupportTickets($id),
             'openSalesTicketsCount'=>$this->getOpenSalesTickets($id),
             'clientsCount'=>$this->getClientsCount($id),
+            'openTamsTicketsCount'=>$this->getMyOpenTamsTicketsCount($id),
+            'openCctvTicketsCount'=>$this->getMyOpenCctvTicketsCount($id),
+            'openFlexcomTicketsCount'=>$this->getMyOpenFlexcomTicketsCount($id),
+
+
         ],200);
 
     }
+
+
+    public  function getMyOpenTamsTicketsCount($id)
+    {
+        $supportTickets=SupportTicket::whereRaw('service_type_id=1 AND officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->count();
+        
+        if(is_null($supportTickets))
+        {
+            return 0;
+
+        }    
+        
+        return  $supportTickets;
+    }
+
+    
+    public  function getMyOpenCctvTicketsCount($id)
+    {
+        $supportTickets=SupportTicket::whereRaw('service_type_id=2 AND officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->count();
+        
+        if(is_null($supportTickets))
+        {
+            return 0;
+
+        }    
+        
+        return  $supportTickets;
+    }
+
+    
+    public  function getMyOpenFlexcomTicketsCount($id)
+    {
+        $supportTickets=SupportTicket::whereRaw('service_type_id=3 AND officer1='.$id.' OR officer2='.$id.' OR officer3='.$id)->count();
+        
+        if(is_null($supportTickets))
+        {
+            return 0;
+
+        }    
+        
+        return  $supportTickets;
+    }
+
+    
+
 
     
 
