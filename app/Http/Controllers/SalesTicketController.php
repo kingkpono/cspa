@@ -117,8 +117,9 @@ class SalesTicketController extends Controller
     public  function update(Request $request, SalesTicket $salesTicket)
     {
         
-      if(request('project_officers')!=null || request('project_officers')!='')
+      if(request('project_officers')!=null || request('project_officers')=='')
       {
+           echo "In";
         $officers=explode(',',request('project_officers'));
 
         $officersCount=count($officers);
