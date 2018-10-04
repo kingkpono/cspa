@@ -119,7 +119,71 @@ class SalesTicketController extends Controller
     public  function update(Request $request, SalesTicket $salesTicket)
     {
         
-        $salesTicket->update($request->all());
+        $rules=[
+         
+            'client_id'=>'required',
+            'service_type_id'=>'required',
+            'project_details'=>'required',
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'project_officers'=>'required',
+            'ticket_contact_email'=>['required_without:ticket_contact_phone','email'],
+            'ticket_contact_phone'=>'required_without:ticket_contact_email'
+        ];
+        $validator=Validator::make($request->all(),$rules);
+
+        if($validator->fails()){
+            return response()->json($validator->errors(),400);
+        }
+             
+        $officers=explode(',',request('project_officers'));
+
+        $officersCount=count($officers);
+         $officer1=0;
+         $officer2=0;
+         $officer3=0;
+        
+         if($officersCount==1)
+         {
+            $officer1=$officers[0];
+            $officer2=$officers[0];
+            $officer3=$officers[0];
+         }else if($officersCount==2)
+         {
+            $officer1=$officers[0];
+            $officer2=$officers[1];
+            $officer3=$officers[1];
+         }
+         else if($officersCount==3)
+         {
+            $officer1=$officers[0];
+            $officer2=$officers[1];
+            $officer3=$officers[2];
+         }
+    
+       
+
+        $data=[
+            'client_id' => request('client_id'),
+            'service_type_id' => request('service_type_id'),    
+            'device' => request('device'),  
+            'serial_number' => request('serial_number'),  
+            'device_description' => request('device_description'),   
+            'device_warranty' => request('device_warranty'), 
+            'project_details' => request('project_details'), 
+            'ticket_contact_email'=>request('ticket_contact_email'), 
+            'ticket_contact_phone'=>request('ticket_contact_phone'), 
+            'start_date' => request('start_date'), 
+            'end_date' => request('end_date'), 
+            'status' => 'Pending', 
+            'officer1' => $officer1, 
+            'officer2' => $officer2, 
+            'officer3' => $officer3, 
+            'attachment' =>  request('attachment')
+
+        ];
+        
+        $salesTicket->update($data);
         return response()->json($salesTicket,200);
 
     }
