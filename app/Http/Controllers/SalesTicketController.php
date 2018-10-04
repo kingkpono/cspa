@@ -150,7 +150,9 @@ class SalesTicketController extends Controller
          $request->input('officer3', $officer3);
     
         }
-
+        
+        var_dump($request->all());
+        die;
         $salesTicket->update($request->all());
         return response()->json($salesTicket,200);
 
