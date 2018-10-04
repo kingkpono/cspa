@@ -5,6 +5,7 @@ use App\Models\Client;
 use App\Http\Resources\Client as  ClientResource;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use App\Mail\TicketAssigned;
 
 use Validator;
 
@@ -100,10 +101,21 @@ class ClientController extends Controller
             'address'          => request('address')
 
         ]);
+    
+        // the message
+$msg = "First line of text\nSecond line of text";
+
+// use wordwrap() if lines are longer than 70 characters
+$msg = wordwrap($msg,70);
+
+// send email
+mail("kingkpono@gmail.com","SB : CSPA",$msg);
         return response()->json(['message' => 'Client added successfully','data'=>$client], 200);
     } catch (\Exception $error) {
         return response()->json('Error creating client', 501);
     }
+
+
 
     }
 
