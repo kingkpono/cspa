@@ -117,45 +117,7 @@ class SalesTicketController extends Controller
     public  function update(Request $request, SalesTicket $salesTicket)
     {
         
-      if(request('project_officers')!=null || request('project_officers')=='')
-      {
-           echo "In";
-        $officers=explode(',',request('project_officers'));
-
-        $officersCount=count($officers);
-         $officer1=0;
-         $officer2=0;
-         $officer3=0;
-        
-         if($officersCount==1)
-         {
-            $officer1=$officers[0];
-            $officer2=$officers[0];
-            $officer3=$officers[0];
-         }else if($officersCount==2)
-         {
-            $officer1=$officers[0];
-            $officer2=$officers[1];
-            $officer3=$officers[1];
-         }
-         else if($officersCount==3)
-         {
-            $officer1=$officers[0];
-            $officer2=$officers[1];
-            $officer3=$officers[2];
-         }
-
-         
-         $request->input('officer1', $officer1);
-         $request->input('officer2', $officer2);
-         $request->input('officer3', $officer3);
-
-         $request->add(['officer1' => $officer1,'officer2' => $officer2,'officer3' => $officer3]);
-    
-        }
-        
-        var_dump($request->all());
-        die;
+     
         $salesTicket->update($request->all());
         return response()->json($salesTicket,200);
 
