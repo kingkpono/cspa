@@ -54,8 +54,6 @@ class SalesTicketController extends Controller
             'client_id'=>'required',
             'service_type_id'=>'required',
             'project_details'=>'required',
-            'start_date'=>'required',
-            'end_date'=>'required',
             'project_officers'=>'required',
             'ticket_contact_email'=>['required_without:ticket_contact_phone','email'],
             'ticket_contact_phone'=>'required_without:ticket_contact_email'
@@ -119,23 +117,8 @@ class SalesTicketController extends Controller
     public  function update(Request $request, SalesTicket $salesTicket)
     {
         
-        $rules=[
-         
-            'client_id'=>'required',
-            'service_type_id'=>'required',
-            'project_details'=>'required',
-            'start_date'=>'required',
-            'end_date'=>'required',
-            'project_officers'=>'required',
-            'ticket_contact_email'=>['required_without:ticket_contact_phone','email'],
-            'ticket_contact_phone'=>'required_without:ticket_contact_email'
-        ];
-        $validator=Validator::make($request->all(),$rules);
-
-        if($validator->fails()){
-            return response()->json($validator->errors(),400);
-        }
-             
+      if(request('project_officers')!=null)
+      {
         $officers=explode(',',request('project_officers'));
 
         $officersCount=count($officers);
@@ -160,30 +143,15 @@ class SalesTicketController extends Controller
             $officer2=$officers[1];
             $officer3=$officers[2];
          }
+
+         
+         $request->input('officer1', $officer1);
+         $request->input('officer2', $officer2);
+         $request->input('officer3', $officer3);
     
-       
+        }
 
-        $data=[
-            'client_id' => request('client_id'),
-            'service_type_id' => request('service_type_id'),    
-            'device' => request('device'),  
-            'serial_number' => request('serial_number'),  
-            'device_description' => request('device_description'),   
-            'device_warranty' => request('device_warranty'), 
-            'project_details' => request('project_details'), 
-            'ticket_contact_email'=>request('ticket_contact_email'), 
-            'ticket_contact_phone'=>request('ticket_contact_phone'), 
-            'start_date' => request('start_date'), 
-            'end_date' => request('end_date'), 
-            'status' => 'Pending', 
-            'officer1' => $officer1, 
-            'officer2' => $officer2, 
-            'officer3' => $officer3, 
-            'attachment' =>  request('attachment')
-
-        ];
-        
-        $salesTicket->update($data);
+        $salesTicket->update($request->all());
         return response()->json($salesTicket,200);
 
     }

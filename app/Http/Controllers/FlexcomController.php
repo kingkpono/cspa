@@ -83,8 +83,6 @@ class FlexcomController extends Controller
             'client_id'=>'required',
             'service_type_id'=>'required',
             'project_details'=>'required',
-            'start_date'=>'required',
-            'end_date'=>'required',
             'project_officers'=>'required'
         ];
         $validator=Validator::make($request->all(),$rules);
