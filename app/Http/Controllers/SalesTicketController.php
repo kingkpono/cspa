@@ -149,6 +149,8 @@ class SalesTicketController extends Controller
          $request->input('officer1', $officer1);
          $request->input('officer2', $officer2);
          $request->input('officer3', $officer3);
+
+         $request->add(['officer1' => $officer1,'officer2' => $officer2,'officer3' => $officer3]);
     
         }
         
