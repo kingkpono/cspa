@@ -7,6 +7,7 @@ use App\Http\Resources\Client as  ClientResource;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use App\Mail\TicketAssigned;
+use Illuminate\Support\Facades\Mail;
 
 use Validator;
 
@@ -80,7 +81,7 @@ class ClientController extends Controller
             'address' =>'required'
 
         ];
-        try{
+      //  try{
         $validator=Validator::make($request->all(),$rules);
 
         if($validator->fails()){
@@ -126,9 +127,9 @@ class ClientController extends Controller
        
         }
         return response()->json(['message' => 'Client added successfully','data'=>$client], 200);
-    } catch (\Exception $error) {
-        return response()->json('Error creating client', 501);
-    }
+  //  } catch (\Exception $error) {
+       // return response()->json('Error creating client', 501);
+  //  }
 
 
 
