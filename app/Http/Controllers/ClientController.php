@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Client;
+use App\Models\Auth\User;
 use App\Http\Resources\Client as  ClientResource;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -102,14 +103,28 @@ class ClientController extends Controller
 
         ]);
     
-        // the message
-$msg = "First line of text\nSecond line of text";
+        if($client)
+        {
+            $content="A new Client has been assigned -Name: ".request('name').'<br/> Email:'.request('email');
+            //get BDM/User email
+            $user=User::find($id);
+            if($user)
+            {
+                Mail::send('emails.ticketassigned', ['title' => 'Ticket Assignment', 'content' => $content], function ($message)
+                {
+        
+                    $message->from('cspa@sbtelecoms.com', ' Admin');
+        
+                    $message->to($user->email);
+        
+        
+                });
+                
+    
+            }
 
-// use wordwrap() if lines are longer than 70 characters
-$msg = wordwrap($msg,70);
-
-// send email
-mail("kingkpono@gmail.com","SB : CSPA",$msg);
+       
+        }
         return response()->json(['message' => 'Client added successfully','data'=>$client], 200);
     } catch (\Exception $error) {
         return response()->json('Error creating client', 501);
