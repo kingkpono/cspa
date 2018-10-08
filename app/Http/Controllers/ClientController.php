@@ -81,7 +81,7 @@ class ClientController extends Controller
             'address' =>'required'
 
         ];
-      //  try{
+       try{
         $validator=Validator::make($request->all(),$rules);
 
         if($validator->fails()){
@@ -111,7 +111,7 @@ class ClientController extends Controller
             $user=User::find($id);
             if($user)
             {
-                Mail::send('emails.ticketassigned', ['title' => 'Ticket Assignment', 'content' => $content], function ($message)
+               /* Mail::send('emails.ticketassigned', ['title' => 'Ticket Assignment', 'content' => $content], function ($message)
                 {
         
                     $message->from('cspa@sbtelecoms.com', ' Admin');
@@ -120,16 +120,16 @@ class ClientController extends Controller
         
         
                 });
-                
+                */
     
             }
 
        
         }
         return response()->json(['message' => 'Client added successfully','data'=>$client], 200);
-  //  } catch (\Exception $error) {
+    } catch (\Exception $error) {
        // return response()->json('Error creating client', 501);
-  //  }
+    }
 
 
 
