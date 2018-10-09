@@ -128,7 +128,7 @@ class ClientController extends Controller
         }
         return response()->json(['message' => 'Client added successfully','data'=>$client], 200);
     } catch (\Exception $error) {
-       // return response()->json('Error creating client', 501);
+       return response()->json('Error creating client', 501);
     }
 
 

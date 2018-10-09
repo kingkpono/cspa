@@ -25,6 +25,20 @@ class UsersTableSeeder extends Seeder
 
         // Add the user
         User::create([
+            'name' => 'Kazeem Abiodun',
+            'email' => 'kazeem.abiodun@sbtelecoms.com',
+            'department' => 'BDM',
+            'phone' => '08025499721',
+            'role' => 'Staff',
+            'password' => bcrypt('almond.2'),
+            'remember_token' => str_random(10),
+            'api_token' => str_random(60),
+
+        ]);
+
+
+         // Add the user
+         User::create([
             'name' => 'KP Akpabio',
             'email' => 'kpono.akpabio@sbtelecoms.com',
             'department' => 'PAD',
