@@ -103,12 +103,12 @@ class ClientController extends Controller
             'address'          => request('address')
 
         ]);
-    
+        $user=User::find(1);
         if($client)
         {
            $content="A new Client has been assigned -Name: ".request('name').'<br/> Email:'.request('email');
             //get BDM/User email
-            $user=User::find(1);
+           
             if($user)
             {
                Mail::send('emails.ticketassigned', ['title' => 'Ticket Assignment', 'content' => $content], function ($message)
