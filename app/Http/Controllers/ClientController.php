@@ -81,7 +81,7 @@ class ClientController extends Controller
             'address' =>'required'
 
         ];
-      // try{
+      try{
         $validator=Validator::make($request->all(),$rules);
 
         if($validator->fails()){
@@ -105,16 +105,16 @@ class ClientController extends Controller
         ]);
         if($client)
         {
-           $content="A new Client has been assigned -Name: ".request('name').'<br/> Email:'.request('email');
+           $content="A new Client has been assigned to you on CSPA-Name: ";
             //get BDM/User email
-           
+            $user=User::find(request('bdm_person_id'));
             
                Mail::send('emails.ticketassigned', ['title' => 'Ticket Assignment', 'content' => $content], function ($message)
                 {
         
-                    $message->from('cspa@sbtelecoms.com', ' Admin');
-                     $message->subject("New Ticket");
-                    $message->to("kpono.akpabio@sbtelecoms.com",'Kpono Akpabio');
+                    $message->from('no-reply@sbtelecoms.com', ' Admin');
+                     $message->subject("New Client Assignment");
+                    $message->to($user->email,$user->name);
         
         
                 });
@@ -126,9 +126,9 @@ class ClientController extends Controller
         }
     
         return response()->json(['message' => 'Client added successfully','data'=>$client], 200);
-    //} catch (\Exception $error) {
+    } catch (\Exception $error) {
        return response()->json('Error creating client', 501);
-   // }
+   }
 
 
 
