@@ -109,6 +109,35 @@ class SalesTicketController extends Controller
             'attachment' =>  request('attachment')
 
         ]);
+
+           if($salesTicket)
+           {
+
+            $content="A new ticket has been assigned to you on CSPA.";
+
+            Mail::send('emails.ticketassigned', ['title' => 'CSPA Ticket Assignment', 'content' => $content], function ($message)
+            {
+                $userModel=User::select("*")->whereRaw("id IN (".$officer1.",".$officer2.",".$officer3.")")->get();
+
+                $recipients=[];
+              
+                foreach ($userModel as $usr) 
+                {
+  
+                $recipients[]=$usr->email;
+                
+                }
+
+
+                $message->from('no-reply@sbtelecoms.com', ' Admin');
+                 $message->subject("New Client Assignment");
+                $message->to($recipients);
+    
+    
+            });
+        
+
+           }
         return response()->json(['message' => 'Sales Ticket added successfully','data'=>$salesTicket], 200);
 
 

@@ -105,19 +105,19 @@ class ClientController extends Controller
         ]);
         if($client)
         {
-           $content="A new Client has been assigned to you on CSPA-Name: ";
+           $content="A new Client has been assigned to you on CSPA.";
             //get BDM/User email
            
 
-               Mail::send('emails.ticketassigned', ['title' => 'Ticket Assignment', 'content' => $content], function ($message)
+               Mail::send('emails.ticketassigned', ['title' => 'CSPA New Client ', 'content' => $content], function ($message)
                 {
                     $userModel=User::select('*')->where('id',request('bdm_person_id'))->get();
 
                     $user=null;
                     foreach ($userModel as $usr) 
                     $user=$usr;
-                    $message->from('no-reply@sbtelecoms.com', ' Admin');
-                     $message->subject("New Client Assignment");
+                    $message->from('no-reply@sbtelecoms.com', 'CSPA Admin');
+                     $message->subject("CSPA New Client");
                     $message->to($user->email,$user->name);
         
         
