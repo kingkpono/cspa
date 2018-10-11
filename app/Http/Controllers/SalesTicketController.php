@@ -127,8 +127,7 @@ class SalesTicketController extends Controller
                 $recipients[]=$usr->email;
                 
                 }
-
-
+              var_dump($recipients);
                 $message->from('no-reply@sbtelecoms.com', ' Admin');
                  $message->subject("New Client Assignment");
                 $message->to($recipients);
