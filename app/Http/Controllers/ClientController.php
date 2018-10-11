@@ -107,7 +107,8 @@ class ClientController extends Controller
         {
            $content="A new Client has been assigned to you on CSPA-Name: ";
             //get BDM/User email
-            $userModel=User::find(request('bdm_person_id'));
+            $userModel=User::select('name,email')->where('id',request('bdm_person_id'))->get();
+
             $user=null;
             foreach ($userModel as $usr) 
             $user=$usr;
