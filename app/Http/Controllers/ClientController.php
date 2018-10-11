@@ -113,8 +113,8 @@ class ClientController extends Controller
                 {
         
                     $message->from('cspa@sbtelecoms.com', ' Admin');
-        
-                    $message->to("kpono.akpabio@sbtelecoms.com");
+                     $message->subject("New Ticket");
+                    $message->to("kpono.akpabio@sbtelecoms.com",'Kpono Akpabio');
         
         
                 });
